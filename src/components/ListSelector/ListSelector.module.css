@@ -1,3 +1,20 @@
 .selector {
-    margin-top: 5.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: small;
+}
+
+.selector select {
+  width: 12rem;
+  color: black;
+  margin-top: 0.25rem;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }

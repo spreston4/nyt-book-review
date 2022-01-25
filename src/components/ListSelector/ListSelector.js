@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ListSelector.module.css";
 
 const ListSelector = (props) => {
-    const [listNames, setListNames] = useState([]);
+  const [listNames, setListNames] = useState([]);
+  const [selectedList, setSelectedList] = useState({});
 
   // Fetch list names from NYT api on application load
   useEffect(() => {
@@ -34,24 +35,50 @@ const ListSelector = (props) => {
         console.error(error);
       }
     };
-
     fetchLists();
   }, []);
 
-  console.log(listNames);
+  const submitFormHandler = (event) => {
+    event.preventDefault();
+  };
+
+  const formChangeHandler = (event) => {
+    setSelectedList({
+      name: event.target.value,
+      encoded:
+        event.target[event.target.selectedIndex].getAttribute(
+          "data-list-encoded"
+        ),
+    });
+  };
+
+  console.log(selectedList);
 
   return (
-    <div className={styles.selector}>
-      <form>
-          <label htmlFor="list-selector">List Selector</label>
-          <input list='lists' name='list-selector' id='list-selector' />
-             <datalist id='lists'>
-                 {listNames.map((list) => (
-                     <option key={list.id} value={list.name} data-encoded={list.encoded} />
-                 ))}
-             </datalist>
+    <React.Fragment>
+      <form onSubmit={submitFormHandler} className={styles.selector}>
+        <div className={styles.controls}>
+          <label htmlFor="list-selector">Select Book List</label>
+          <button type="submit">Submit</button>
+        </div>
+        <select
+          onChange={formChangeHandler}
+          list="lists"
+          name="list-selector"
+          id="list-selector"
+        >
+          {listNames.map((list) => (
+            <option
+              key={list.id}
+              value={list.name}
+              data-list-encoded={list.encoded}
+            >
+              {list.name}
+            </option>
+          ))}
+        </select>
       </form>
-    </div>
+    </React.Fragment>
   );
 };
 

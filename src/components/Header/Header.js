@@ -1,4 +1,5 @@
 import styles from "./Header.module.css";
+import ListSelector from "../ListSelector/ListSelector";
 
 const Header = (props) => {
   return (
@@ -9,6 +10,7 @@ const Header = (props) => {
           {props.listName || "Booklist Placeholder"}
         </span>
       </h1>
+      <ListSelector />
     </div>
   );
 };
