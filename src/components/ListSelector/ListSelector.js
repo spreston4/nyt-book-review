@@ -40,6 +40,7 @@ const ListSelector = (props) => {
 
   const submitFormHandler = (event) => {
     event.preventDefault();
+    props.onUpdateList({ selectedList });
   };
 
   const formChangeHandler = (event) => {
@@ -52,14 +53,16 @@ const ListSelector = (props) => {
     });
   };
 
-  console.log(selectedList);
-
   return (
     <React.Fragment>
       <form onSubmit={submitFormHandler} className={styles.selector}>
-        <div className={styles.controls}>
-          <label htmlFor="list-selector">Select Book List</label>
-          <button type="submit">Submit</button>
+        <div className={styles.control}>
+          <div>
+            <label htmlFor="list-selector">Select Book List</label>
+          </div>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
         </div>
         <select
           onChange={formChangeHandler}

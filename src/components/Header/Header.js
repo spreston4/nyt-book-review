@@ -2,6 +2,12 @@ import styles from "./Header.module.css";
 import ListSelector from "../ListSelector/ListSelector";
 
 const Header = (props) => {
+
+  const updateListHandler = ({ selectedList }) => {
+    console.log('header');
+    console.log(selectedList);
+  };
+
   return (
     <div className={styles.header}>
       <h1>
@@ -10,7 +16,7 @@ const Header = (props) => {
           {props.listName || "Booklist Placeholder"}
         </span>
       </h1>
-      <ListSelector />
+      <ListSelector onUpdateList={updateListHandler} />
     </div>
   );
 };
