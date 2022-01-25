@@ -2,24 +2,43 @@ import { useState, useEffect } from "react";
 import styles from "./ListSelector.module.css";
 
 const ListSelector = (props) => {
+    const [listNames, setListNames] = useState([]);
+
+  // Fetch list names from NYT api on application load
   useEffect(() => {
     const fetchLists = async () => {
-      const response = await fetch(
-        `https://api.nytimes.com/svc/books/v3/lists/names.json?&api-key=${process.env.REACT_APP_API_KEY}`
-      );
+      try {
+        const response = await fetch(
+          `https://api.nytimes.com/svc/books/v3/lists/names.json?&api-key=${process.env.REACT_APP_API_KEY}`
+        );
 
-      if (!response.ok) {
-        console.log("error fetching");
-        return;
+        if (!response.ok) {
+          console.log("error fetching");
+          return;
+        }
+
+        const responseData = await response.json();
+        const listData = responseData.results;
+        const loadedLists = [];
+
+        for (const key in listData) {
+          loadedLists.push({
+            id: key,
+            name: listData[key].display_name,
+            encoded: listData[key].list_name_encoded,
+          });
+        }
+
+        setListNames(loadedLists);
+      } catch (error) {
+        console.error(error);
       }
-
-      const data = await response.json();
-
-      console.log(data);
     };
 
     fetchLists();
   }, []);
+
+  console.log(listNames);
 
   return (
     <div className={styles.selector}>
