@@ -18,6 +18,8 @@ body {
   -webkit-font-smoothing: antialiased;
   padding: 0;
   font-family: "Roboto", sans-serif;
+  background-color: #ffffff;
+  color: #485549;
 }
 img,
 picture,
