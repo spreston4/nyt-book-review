@@ -42,7 +42,15 @@ const ListSelector = (props) => {
 
   return (
     <div className={styles.selector}>
-      <p>test</p>
+      <form>
+          <label htmlFor="list-selector">List Selector</label>
+          <input list='lists' name='list-selector' id='list-selector' />
+             <datalist id='lists'>
+                 {listNames.map((list) => (
+                     <option key={list.id} value={list.name} data-encoded={list.encoded} />
+                 ))}
+             </datalist>
+      </form>
     </div>
   );
 };
