@@ -7,7 +7,7 @@ const BookItem = (props) => {
   // Limit title to 30 characters.
   const titleHandler = (title) => {
     if (title.length > 30) {
-      return title.slice(0, 29) + "...";
+      return title.slice(0, 30) + "...";
     } else {
       return title;
     }
@@ -16,7 +16,7 @@ const BookItem = (props) => {
   // Limit description on BookItem to 50 characters.
   const descriptionHandler = (description) => {
     if (description.length > 50) {
-      return description.slice(0, 49) + "...";
+      return description.slice(0, 50) + "...";
     } else {
       return description;
     }

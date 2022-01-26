@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ListSelector.module.css";
-import loadingImage from '../../assets/images/Spinner-1s-45px.gif';
+import loadingImage from "../../assets/images/Spinner-1s-45px.gif";
 
 const ListSelector = (props) => {
   const [listNames, setListNames] = useState([]);
-  const [selectedList, setSelectedList] = useState({name: '', encoded: ''});
+  const [quantity, setQuantity] = useState();
+  const [selectedList, setSelectedList] = useState({ name: "", encoded: "" });
   const [selectionError, setSelectionError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,10 +31,14 @@ const ListSelector = (props) => {
           });
         }
 
-        setListNames(loadedLists.sort((a, b) => a.name !== b.name ? a.name < b.name ? -1 : 1: 0));
+        setListNames(
+          loadedLists.sort((a, b) =>
+            a.name !== b.name ? (a.name < b.name ? -1 : 1) : 0
+          )
+        );
         setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching lists', error);
+        console.error("Error fetching lists", error);
       }
     };
     fetchLists();
@@ -50,10 +55,11 @@ const ListSelector = (props) => {
     }
 
     props.onUpdateList({ selectedList });
+    props.onUpdateQuantity(quantity);
   };
 
   // Sets state whenever new option is selected from the dropdown.
-  const formChangeHandler = (event) => {
+  const listChangeHandler = (event) => {
     // Reset error state if it exists.
     setSelectionError(false);
 
@@ -66,32 +72,58 @@ const ListSelector = (props) => {
     });
   };
 
+  const quantityChangeHandler = (event) => {
+    setQuantity(event.target.value);
+  };
+
   return (
     <React.Fragment>
       <form onSubmit={submitFormHandler} className={styles.selector}>
-        <label htmlFor="list-selector">
-          <h3>Checkout a new Book List!</h3>
-        </label>
-        <select
-          onChange={formChangeHandler}
-          list="lists"
-          name="list-selector"
-          id="list-selector"
-        >
-          <option value="blank">Select a NYT Book List</option>
-          {listNames.map((list) => (
-            <option
-              key={list.id}
-              value={list.name}
-              data-list-encoded={list.encoded}
+        {!isLoading && (
+          <React.Fragment>
+            <label htmlFor="list-selector">
+              <h3>Checkout a new Book List!</h3>
+            </label>
+            <select
+              onChange={listChangeHandler}
+              list="lists"
+              name="list-selector"
+              id="list-selector"
             >
-              {list.name}
-            </option>
-          ))}
-        </select>
-        <button type="submit">Submit</button>
+              <option value="blank">Select a NYT Book List</option>
+              {listNames.map((list) => (
+                <option
+                  key={list.id}
+                  value={list.name}
+                  data-list-encoded={list.encoded}
+                >
+                  {list.name}
+                </option>
+              ))}
+            </select>
+            <br />
+
+            <label htmlFor="quantity-selector">
+              <h3>Select quantity!</h3>
+            </label>
+            <select
+              onChange={quantityChangeHandler}
+              list="quantity"
+              name="quantity-selector"
+              id="quantity-selector"
+            >
+              <option value="">All</option>
+              <option value={5}>5</option>
+              <option value={10}>10 (Default)</option>
+              <option value={15}>15</option>
+            </select>
+          </React.Fragment>
+        )}
         {isLoading && <img src={loadingImage} />}
-        {selectionError && <p className={styles.error}>Select a valid Book List.</p>}
+        <button type="submit">Submit</button>
+        {selectionError && (
+          <p className={styles.error}>Select a valid Book List.</p>
+        )}
       </form>
     </React.Fragment>
   );

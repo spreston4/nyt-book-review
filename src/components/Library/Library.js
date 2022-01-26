@@ -47,11 +47,15 @@ const Library = (props) => {
     fetchBooks(props.selectedList);
   }, [props.selectedList]);
 
+  const numResults = props.filterQuantity || libraryArray.length;
+
   return (
     <div className={styles.library}>
       {isLoading && <img src={loadingImage} />}
       {!isLoading &&
-        libraryArray.map((book) => <BookItem key={book.id} book={book} />)}
+        libraryArray
+          .slice(0, numResults)
+          .map((book) => <BookItem key={book.id} book={book} />)}
     </div>
   );
 };
