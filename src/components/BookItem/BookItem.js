@@ -15,7 +15,9 @@ const BookItem = (props) => {
 
   // Limit description on BookItem to 50 characters.
   const descriptionHandler = (description) => {
-    if (description.length > 50) {
+    if (description.length === 0) {
+      return "Description not provided for this book.";
+    } else if (description.length > 50) {
       return description.slice(0, 50) + "...";
     } else {
       return description;
