@@ -1,6 +1,9 @@
+import { useState } from "react";
 import styles from "./BookItem.module.css";
 
 const BookItem = (props) => {
+  const [inHover, setInHover] = useState(false);
+
   // Limit title to 30 characters.
   const titleHandler = (title) => {
     if (title.length > 30) {
@@ -19,15 +22,32 @@ const BookItem = (props) => {
     }
   };
 
+  // Conditional formatting for animation
+  const backgroundClasses = `${styles.background} ${
+    inHover ? styles.show : styles.hide
+  }`;
+
+  const addHoverHandler = () => {
+    setInHover(true);
+  };
+
+  const removeHoverHandler = () => {
+    setInHover(false);
+  };
+
   return (
-    <div className={styles.book}>
+    <div
+      className={styles.book}
+      onMouseEnter={addHoverHandler}
+      onMouseLeave={removeHoverHandler}
+    >
       <div className={styles.content}>
         <h3>{titleHandler(props.book.title)}</h3>
         <p>{descriptionHandler(props.book.description)}</p>
         <button>Book Details</button>
       </div>
       <div className={styles.foreground}></div>
-      <div className={styles.background}>
+      <div className={backgroundClasses}>
         <img src={props.book.bookImage} alt={`Cover for ${props.book.title}`} />
       </div>
     </div>
