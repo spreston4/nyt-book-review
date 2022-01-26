@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 
+// Displays title and selected list to the user. Subtitle updates whenever user selects a new list from ListSelector.
 const Header = (props) => {
-
+  
+  // Conditional formatting for subtitle animation.
   const [animateSubtitle, setAnimateSubtitle] = useState(false);
-  const subtitleClasses = `${styles.subtitle} ${animateSubtitle ? styles.bump : ''}`;
-
+  const subtitleClasses = `${styles.subtitle} ${
+    animateSubtitle ? styles.bump : ""}`;
 
   useEffect(() => {
     setAnimateSubtitle(true);

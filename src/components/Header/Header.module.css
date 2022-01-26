@@ -15,6 +15,7 @@
 .header h1 {
   font-weight: 400;
   font-size: 2rem;
+  animation: title-appear 1000ms linear;
 }
 
 .subtitle {
@@ -27,10 +28,22 @@
   animation: subtitle-appear 1000ms linear;
 }
 
+@keyframes title-appear {
+  0% {
+    opacity: 0;
+    transform: translatex(-4rem) translatey(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translatex(0) translatey(0);
+  }
+}
+
 @keyframes subtitle-appear {
   0% {
     opacity: 0;
-    transform: translatex(10rem);
+    transform: translatex(12rem);
   }
 
   100% {

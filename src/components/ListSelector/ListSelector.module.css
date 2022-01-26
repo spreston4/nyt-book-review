@@ -6,7 +6,7 @@
   font-size: 15px;
   background-color: #485549;
   color: #ffffff;
-  padding: .75rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 30px;
   box-shadow: 0 2px 8px rgba(51, 94, 47, 0.25);
   width: 20rem;
@@ -16,25 +16,44 @@
 }
 
 .selector select {
-  width: 14rem;
+  width: 15rem;
   color: black;
   margin-top: 0.5rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 10px;
   border: none;
 }
 
-.selector button {
-    background-color: #ffffff;
-    color: #485549;
-    border: none;
-    border-radius: 15px;
-    padding: .25rem .5rem;
+.selector select:hover,
+.selector select:active
+ {
+  cursor: pointer;
 }
 
-.control {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100%;
+.selector button {
+  background-color: #ffffff;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 0.25rem 0.75rem;
+  margin-top: 0.5rem;
+
 }
+
+.selector button:hover,
+.selector button:active {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: linear 75ms;
+}
+
+.selector h3 {
+  font-weight: 100;
+}
+
+.error {
+  margin-top: .5rem;
+  font-size: small;
+  font-style: italic;
+}
+

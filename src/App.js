@@ -1,14 +1,12 @@
-import { useState } from 'react';
-import styles from './App.module.css';
+import { useState } from "react";
+import styles from "./App.module.css";
 import Header from "./components/Header/Header";
 import ListSelector from "./components/ListSelector/ListSelector";
 
 function App() {
-
-
   const [selectedBookList, setSelectedBookList] = useState({
-    name: 'Paperback Trade Fiction',
-    encoded: 'trade-fiction-paperback'
+    name: "Paperback Trade Fiction",
+    encoded: "trade-fiction-paperback",
   });
 
   const updateListHandler = ({ selectedList }) => {
@@ -17,7 +15,7 @@ function App() {
   };
   return (
     <div className={styles.app}>
-      <Header listName={selectedBookList.name}/>
+      <Header listName={selectedBookList.name} />
       <ListSelector onUpdateList={updateListHandler} />
     </div>
   );

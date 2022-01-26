@@ -3,7 +3,8 @@ import styles from "./ListSelector.module.css";
 
 const ListSelector = (props) => {
   const [listNames, setListNames] = useState([]);
-  const [selectedList, setSelectedList] = useState({});
+  const [selectedList, setSelectedList] = useState({name: '', encoded: ''});
+  const [selectionError, setSelectionError] = useState(false);
 
   // Fetch list names from NYT api on application load
   useEffect(() => {
@@ -20,8 +21,9 @@ const ListSelector = (props) => {
 
         const responseData = await response.json();
         const listData = responseData.results;
-        const loadedLists = [];
 
+        // Populate array with relevant data
+        const loadedLists = [];
         for (const key in listData) {
           loadedLists.push({
             id: key,
@@ -38,12 +40,24 @@ const ListSelector = (props) => {
     fetchLists();
   }, []);
 
+  // Passes selectedList state to App when user presses submit.
   const submitFormHandler = (event) => {
     event.preventDefault();
+
+    // Ensure valid input exists
+    if (selectedList.name === "blank" || selectedList.name.length === 0) {
+      setSelectionError(true);
+      return;
+    }
+
     props.onUpdateList({ selectedList });
   };
 
+  // Sets state whenever new option is selected from the dropdown.
   const formChangeHandler = (event) => {
+    // Reset error state if it exists.
+    setSelectionError(false);
+
     setSelectedList({
       name: event.target.value,
       encoded:
@@ -56,20 +70,16 @@ const ListSelector = (props) => {
   return (
     <React.Fragment>
       <form onSubmit={submitFormHandler} className={styles.selector}>
-        <div className={styles.control}>
-          <div>
-            <label htmlFor="list-selector">Select Book List</label>
-          </div>
-          <div>
-            <button type="submit">Submit</button>
-          </div>
-        </div>
+        <label htmlFor="list-selector">
+          <h3>Select Book List</h3>
+        </label>
         <select
           onChange={formChangeHandler}
           list="lists"
           name="list-selector"
           id="list-selector"
         >
+          <option value="blank">Select a NYT Book List</option>
           {listNames.map((list) => (
             <option
               key={list.id}
@@ -80,6 +90,8 @@ const ListSelector = (props) => {
             </option>
           ))}
         </select>
+        {selectionError && <p className={styles.error}>Select a valid Book List.</p>}
+        <button type="submit">Submit</button>
       </form>
     </React.Fragment>
   );
