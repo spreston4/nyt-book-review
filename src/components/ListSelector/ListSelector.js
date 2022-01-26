@@ -32,7 +32,7 @@ const ListSelector = (props) => {
           });
         }
 
-        setListNames(loadedLists);
+        setListNames(loadedLists.sort((a, b) => a.name !== b.name ? a.name < b.name ? -1 : 1: 0));
       } catch (error) {
         console.error(error);
       }
@@ -71,7 +71,7 @@ const ListSelector = (props) => {
     <React.Fragment>
       <form onSubmit={submitFormHandler} className={styles.selector}>
         <label htmlFor="list-selector">
-          <h3>Select Book List</h3>
+          <h3>Checkout a new Book List!</h3>
         </label>
         <select
           onChange={formChangeHandler}
