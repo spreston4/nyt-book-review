@@ -47,6 +47,12 @@ const Library = (props) => {
     fetchBooks(props.selectedList);
   }, [props.selectedList]);
 
+  // Lift book info.
+  const openModalHandler = (bookData) => {
+    props.onOpenModal(bookData);
+  };
+
+  // Ensure correct quanity of books is displayed.
   const numResults = props.filterQuantity || libraryArray.length;
 
   return (
@@ -55,7 +61,13 @@ const Library = (props) => {
       {!isLoading &&
         libraryArray
           .slice(0, numResults)
-          .map((book) => <BookItem key={book.id} book={book} />)}
+          .map((book) => (
+            <BookItem
+              key={book.id}
+              book={book}
+              onOpenModal={openModalHandler}
+            />
+          ))}
     </div>
   );
 };

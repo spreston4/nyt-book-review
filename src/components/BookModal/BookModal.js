@@ -9,11 +9,14 @@ const BackdropOverlay = () => {
 
 const BookModal = (props) => {
   const modalElement = document.getElementById("modal-root");
+  
+
   return createPortal(
     <React.Fragment>
       <BackdropOverlay />
       <div className={styles.modal}>
         <p>woop</p>
+        <button onClick={props.onCloseModal}>Close</button>
       </div>
     </React.Fragment>,
     modalElement

@@ -1,8 +1,22 @@
 import { useState } from "react";
 import styles from "./BookItem.module.css";
 
+// Displays a card to the user with teaser information for each book. Accepts book information from Library. Lifts book information to App.
 const BookItem = (props) => {
   const [inHover, setInHover] = useState(false);
+
+  const addHoverHandler = () => {
+    setInHover(true);
+  };
+
+  const removeHoverHandler = () => {
+    setInHover(false);
+  };
+
+  // Pass book data back to app when user selects the details button
+  const openModalHandler = () => {
+    props.onOpenModal(props.book);
+  };
 
   // Limit title to 30 characters.
   const titleHandler = (title) => {
@@ -29,14 +43,6 @@ const BookItem = (props) => {
     inHover ? styles.show : styles.hide
   }`;
 
-  const addHoverHandler = () => {
-    setInHover(true);
-  };
-
-  const removeHoverHandler = () => {
-    setInHover(false);
-  };
-
   return (
     <div
       className={styles.book}
@@ -46,7 +52,7 @@ const BookItem = (props) => {
       <div className={styles.content}>
         <h3>{titleHandler(props.book.title)}</h3>
         <p>{descriptionHandler(props.book.description)}</p>
-        <button>Book Details</button>
+        <button onClick={openModalHandler}>Book Details</button>
       </div>
       <div className={styles.foreground}></div>
       <div className={backgroundClasses}>

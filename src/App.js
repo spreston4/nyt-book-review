@@ -21,6 +21,8 @@ function App() {
   const [quantityBooks, setQuantityBooks] = useState(
     initialLibraryState.quantity
   );
+  const [selectedBook, setSelectedBook] = useState({});
+  const [showModal, setShowModal] = useState(false);
 
   const updateListHandler = ({ selectedList }) => {
     setSelectedBookList(selectedList);
@@ -30,9 +32,20 @@ function App() {
     setQuantityBooks(newQuantity);
   };
 
+  const openModalHandler = (bookData) => {
+    setSelectedBook(bookData);
+    setShowModal(true);
+  };
+
+  const closeModalHandler = () => {
+    setShowModal(false);
+  };
+
   return (
     <React.Fragment>
-      <BookModal />
+      {showModal && (
+        <BookModal onCloseModal={closeModalHandler} book={selectedBook} />
+      )}
       <div className={styles.app}>
         <Header listName={selectedBookList.name} />
         <div className={styles.container}>
@@ -43,6 +56,7 @@ function App() {
           <Library
             selectedList={selectedBookList.encoded}
             filterQuantity={quantityBooks}
+            onOpenModal={openModalHandler}
           />
         </div>
       </div>
