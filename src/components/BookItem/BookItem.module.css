@@ -3,6 +3,7 @@
   height: 16.8rem;
   position: relative;
   margin: 1rem;
+  animation: book-appear 400ms linear;
 }
 
 .content {
@@ -70,11 +71,27 @@
 }
 
 .show {
-    transform: translate(3rem, -1rem);
-    transition-duration: 400ms;
+  transform: translate(3rem, -1rem);
+  transition-duration: 400ms;
 }
 
 .hide {
+  transform: translate(0, 0);
+  transition-duration: 400ms;
+}
+
+.loading {
+  margin-top: 2rem;
+}
+
+@keyframes book-appear {
+  0% {
+    opacity: 0;
+    transform: translate(0.25rem, -0.25rem);
+  }
+
+  100% {
+    opacity: 1;
     transform: translate(0, 0);
-    transition-duration: 400ms;
+  }
 }

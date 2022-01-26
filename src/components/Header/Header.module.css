@@ -32,12 +32,12 @@
 @keyframes title-appear {
   0% {
     opacity: 0;
-    transform: translatex(-4rem) translatey(-1rem);
+    transform: translate(-4rem, -1rem);
   }
 
   100% {
     opacity: 1;
-    transform: translatex(0) translatey(0);
+    transform: translate(0, 0);
   }
 }
 
