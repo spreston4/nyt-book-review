@@ -7,8 +7,12 @@
   background-color: #485549;
   color: #ffffff;
   padding: .75rem 1.5rem;
-  border-radius: 230px;
+  border-radius: 30px;
   box-shadow: 0 2px 8px rgba(51, 94, 47, 0.25);
+  width: 20rem;
+  margin-top: 8rem;
+  margin-left: 2rem;
+  z-index: 0;
 }
 
 .selector select {

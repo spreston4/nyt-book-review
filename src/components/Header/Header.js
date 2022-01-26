@@ -1,22 +1,28 @@
+import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
-import ListSelector from "../ListSelector/ListSelector";
 
 const Header = (props) => {
 
-  const updateListHandler = ({ selectedList }) => {
-    console.log('header');
-    console.log(selectedList);
-  };
+  const [animateSubtitle, setAnimateSubtitle] = useState(false);
+  const subtitleClasses = `${styles.subtitle} ${animateSubtitle ? styles.bump : ''}`;
+
+
+  useEffect(() => {
+    setAnimateSubtitle(true);
+
+    const timer = setTimeout(() => {
+      setAnimateSubtitle(false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [props.listName]);
 
   return (
     <div className={styles.header}>
-      <h1>
-        NYT Book Reviews:{" "}
-        <span className={styles.subtitle}>
-          {props.listName || "Booklist Placeholder"}
-        </span>
-      </h1>
-      <ListSelector onUpdateList={updateListHandler} />
+      <h1>NYT Book Reviews:</h1>
+      <p className={subtitleClasses}>{props.listName}</p>
     </div>
   );
 };
