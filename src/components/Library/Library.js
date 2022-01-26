@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import styles from "./Library.module.css";
+import BookItem from "../BookItem/BookItem";
 
 // Fetches book results for the selected list. Displays a BookItem for each result to the user. Results filtered to 10.
 const Library = (props) => {
+    const [libraryArray, setLibraryArray] = useState([]);
+
   // Fetch book results for selected list
   useEffect(() => {
     const fetchBooks = async (searchList) => {
@@ -11,19 +14,31 @@ const Library = (props) => {
           `https://api.nytimes.com/svc/books/v3/lists/current/${searchList}.json?api-key=${process.env.REACT_APP_API_KEY}`
         );
 
-        if (!response.ok) {
-          console.log("error fetching");
-          return;
+        const responseData = await response.json();
+        const libraryData = responseData.results.books;
+        
+        // Populate array with relevant data
+        const loadedBooks = [];
+        for (const key in libraryData) {
+            loadedBooks.push({
+                id: key,
+                amazonUrl: libraryData[key].amazon_product_url,
+                author: libraryData[key].author,
+                bookImage: libraryData[key].book_image,
+                description: libraryData[key].description,
+                isbn13: libraryData[key].primary_isbn13,
+                publisher: libraryData[key].publisher,
+                rank: libraryData[key].rank,
+                rankLastWeek: libraryData[key].rank_last_week,
+                title: libraryData[key].title,
+                weeksOnList: libraryData[key].weeks_on_list,
+            });
         }
 
-        const responseData = await response.json();
-        const numResults = responseData.num_results;
-        const libraryData = responseData.results;
-        console.log(numResults);
-        console.log(libraryData);
+        setLibraryArray(loadedBooks);
 
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching books', error);
       }
     };
     fetchBooks(props.selectedList);
@@ -31,7 +46,9 @@ const Library = (props) => {
 
   return (
     <div className={styles.library}>
-      <p>Library placeholder</p>
+      {libraryArray.map((book) => (
+          <BookItem book={book}/>
+      ))}
     </div>
   );
 };

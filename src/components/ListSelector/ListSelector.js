@@ -14,11 +14,6 @@ const ListSelector = (props) => {
           `https://api.nytimes.com/svc/books/v3/lists/names.json?&api-key=${process.env.REACT_APP_API_KEY}`
         );
 
-        if (!response.ok) {
-          console.log("error fetching");
-          return;
-        }
-
         const responseData = await response.json();
         const listData = responseData.results;
 
@@ -34,7 +29,7 @@ const ListSelector = (props) => {
 
         setListNames(loadedLists.sort((a, b) => a.name !== b.name ? a.name < b.name ? -1 : 1: 0));
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching lists', error);
       }
     };
     fetchLists();
