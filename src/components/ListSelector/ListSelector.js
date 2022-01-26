@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ListSelector.module.css";
+import loadingImage from '../../assets/images/Spinner-1s-45px.gif';
 
 const ListSelector = (props) => {
   const [listNames, setListNames] = useState([]);
   const [selectedList, setSelectedList] = useState({name: '', encoded: ''});
   const [selectionError, setSelectionError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch list names from NYT api on application load
   useEffect(() => {
+    setIsLoading(true);
     const fetchLists = async () => {
       try {
         const response = await fetch(
@@ -28,6 +31,7 @@ const ListSelector = (props) => {
         }
 
         setListNames(loadedLists.sort((a, b) => a.name !== b.name ? a.name < b.name ? -1 : 1: 0));
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching lists', error);
       }
@@ -85,8 +89,9 @@ const ListSelector = (props) => {
             </option>
           ))}
         </select>
-        {selectionError && <p className={styles.error}>Select a valid Book List.</p>}
         <button type="submit">Submit</button>
+        {isLoading && <img src={loadingImage} />}
+        {selectionError && <p className={styles.error}>Select a valid Book List.</p>}
       </form>
     </React.Fragment>
   );
