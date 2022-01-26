@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import styles from "./BookModal.module.css";
 
@@ -10,6 +10,8 @@ const BackdropOverlay = () => {
 const BookModal = (props) => {
   const modalElement = document.getElementById("modal-root");
 
+  const [reviews, setReviews] = useState();
+
   useEffect(() => {
     const fetchReviews = async (isbn) => {
       try {
@@ -18,7 +20,13 @@ const BookModal = (props) => {
         );
 
         const responseData = await response.json();
-        console.log(responseData);
+
+        // Ensure results are present
+        if (responseData.results.length === 0) {
+          return;
+        }
+
+        setReviews(responseData.results);
       } catch (error) {
         console.error("Error fetching reviews", error);
       }
@@ -26,11 +34,37 @@ const BookModal = (props) => {
     fetchReviews(props.book.isbn13);
   }, [props.book]);
 
+  const descriptionHandler = (description) => {
+      if (description.length === 0) {
+          return "Description not provided for this book.";
+      } else {
+          return description;
+      }
+  };
+
+  console.log(props.book);
+  console.log(props.book.amazonUrl);
+
   return createPortal(
     <React.Fragment>
       <BackdropOverlay />
       <div className={styles.modal}>
-        <p>woop</p>
+        <div className={styles.content}>
+          <div className={styles.image}>
+            <img src={props.book.bookImage} />
+          </div>
+          <div className={styles.details}>
+              <h2>{props.book.title}</h2>
+              <p>{descriptionHandler(props.book.description)}</p>
+              <p className={styles.byline}>Written by {props.book.author}. Published by {props.book.publisher}.</p>
+              <div>
+                  <h3>Best seller for {props.book.weeksOnList} weeks!</h3>
+                  <p>{props.book.title} is currently ranked number {props.book.rank} on the New York Times Best Sellers list in its category.</p>
+                  <a href={props.book.amazonUrl}target='_blank'>Find it on Amazon</a>
+              </div>
+          </div>
+        </div>
+
         <button onClick={props.onCloseModal}>Close</button>
       </div>
     </React.Fragment>,
