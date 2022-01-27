@@ -115,12 +115,13 @@ const ListSelector = (props) => {
               <option value={15}>15</option>
               <option value="">All</option>
             </select>
+            <Button type="submit" alt={true}>
+              Submit
+            </Button>
           </React.Fragment>
         )}
         {isLoading && <img src={loadingImage} />}
-        <Button type="submit" alt={true}>
-          Submit
-        </Button>
+
         {selectionError && (
           <p className={styles.error}>Select a valid Book List.</p>
         )}
