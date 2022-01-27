@@ -30,20 +30,7 @@
 .content button {
   width: 10.5rem;
   position: absolute;
-  bottom: 1.5rem;
-  padding: 0.25rem;
-  color: #ffffff;
-  background-color: #485549;
-  border: none;
-  border-radius: 3px;
-  box-shadow: 0 2px 8px rgba(51, 94, 47, 0.25);
-}
-
-.content button:hover,
-.content button:active {
-  cursor: pointer;
-  transform: scale(1.1);
-  transition: linear 75ms;
+  bottom: 1rem;
 }
 
 .foreground {

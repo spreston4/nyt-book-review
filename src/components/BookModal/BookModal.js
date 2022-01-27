@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import styles from "./BookModal.module.css";
 import ReviewItem from "../ReviewItem/ReviewItem";
+import Button from '../ui/Button/Button';
 
 const BackdropOverlay = () => {
   const backdropElement = document.getElementById("backdrop-root");
@@ -76,7 +77,7 @@ const BookModal = (props) => {
         </div>
         
 
-        <button onClick={props.onCloseModal}>Close</button>
+        <Button onClick={props.onCloseModal} alt={false}>Close</Button>
       </div>
     </React.Fragment>,
     modalElement

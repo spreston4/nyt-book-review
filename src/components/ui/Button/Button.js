@@ -1,9 +1,9 @@
 import styles from "./Button.module.css";
 
 const Button = (props) => {
-    
   const buttonClasses = `${styles.button} ${props.className} ${
-    props.alt ? styles.alt : ""}`;
+    props.alt ? styles.alt : ""
+  }`;
 
   return (
     <button

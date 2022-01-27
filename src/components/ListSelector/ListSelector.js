@@ -138,7 +138,9 @@ const ListSelector = (props) => {
         )}
         {isLoading && <img src={loadingImage} />}
         {/* <button type="submit">Submit</button> */}
-        <Button type='submit' alt={true}>Submit</Button>
+        <Button type="submit" alt={true}>
+          Submit
+        </Button>
         {selectionError && (
           <p className={styles.error}>Select a valid Book List.</p>
         )}

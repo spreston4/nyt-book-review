@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./BookItem.module.css";
+import Button from "../ui/Button/Button";
 
 // Displays a card to the user with teaser information for each book. Accepts book information from Library. Lifts book information to App.
 const BookItem = (props) => {
@@ -52,7 +53,9 @@ const BookItem = (props) => {
       <div className={styles.content}>
         <h3>{titleHandler(props.book.title)}</h3>
         <p>{descriptionHandler(props.book.description)}</p>
-        <button onClick={openModalHandler}>Book Details</button>
+        <Button onClick={openModalHandler} alt={false}>
+          Book Details
+        </Button>
       </div>
       <div className={styles.foreground}></div>
       <div className={backgroundClasses}>
