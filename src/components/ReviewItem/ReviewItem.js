@@ -1,7 +1,8 @@
 import styles from "./ReviewItem.module.css";
 
+// Displays relevant review data to the user on BookModal. Accepts review data from BookModal.
 const ReviewItem = (props) => {
-  // Convert uppercase reveiew author to title case 
+  // Convert uppercase reveiew author to title case
   const convertCase = (str) => {
     return str
       .toLowerCase()
@@ -17,7 +18,9 @@ const ReviewItem = (props) => {
         Review by {convertCase(props.review.byline)}. Published on{" "}
         {props.review.publication_dt}.
       </p>
-      <a href={props.review.url}>FULL REVIEW</a>
+      <a href={props.review.url} target="_blank">
+        Full Review
+      </a>
     </div>
   );
 };
