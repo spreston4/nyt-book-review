@@ -9,6 +9,7 @@ const Header = (props) => {
     animateSubtitle ? styles.bump : ""
   }`;
 
+  // Ensure animation is repeatable.
   useEffect(() => {
     setAnimateSubtitle(true);
 

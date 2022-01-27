@@ -32,6 +32,7 @@ const ListSelector = (props) => {
           });
         }
 
+        // Alphabetize results & set state
         setListNames(
           loadedLists.sort((a, b) =>
             a.name !== b.name ? (a.name < b.name ? -1 : 1) : 0
@@ -45,7 +46,7 @@ const ListSelector = (props) => {
     fetchLists();
   }, []);
 
-  // Passes selectedList state to App when user presses submit.
+  // Pass selectedList state to App when user presses submit.
   const submitFormHandler = (event) => {
     event.preventDefault();
 
@@ -121,7 +122,6 @@ const ListSelector = (props) => {
           </React.Fragment>
         )}
         {isLoading && <img src={loadingImage} />}
-
         {selectionError && (
           <p className={styles.error}>Select a valid Book List.</p>
         )}

@@ -3,12 +3,12 @@ import styles from "./Library.module.css";
 import BookItem from "../BookItem/BookItem";
 import loadingImage from "../../assets/images/Spinner-1s-200px.gif";
 
-// Fetches book results for the selected list. Displays a BookItem for each result to the user. Results filtered to 10.
+// Fetches book results for the selected list. Displays a BookItem for each result to the user. Number of books displayed controlled by ListSelector, defaults to 10.
 const Library = (props) => {
   const [libraryArray, setLibraryArray] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fetch book results for selected list
+  // Fetch book results for selected list. Re-evaluates whenever user selects a new list from ListSelector
   useEffect(() => {
     const fetchBooks = async (searchList) => {
       setIsLoading(true);
@@ -47,7 +47,7 @@ const Library = (props) => {
     fetchBooks(props.selectedList);
   }, [props.selectedList]);
 
-  // Lift book info.
+  // Lift book info from BookItem to App.
   const openModalHandler = (bookData) => {
     props.onOpenModal(bookData);
   };
