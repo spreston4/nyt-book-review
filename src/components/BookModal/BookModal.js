@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import styles from "./BookModal.module.css";
+import ReviewItem from "../ReviewItem/ReviewItem";
 
 const BackdropOverlay = () => {
   const backdropElement = document.getElementById("backdrop-root");
@@ -42,9 +43,6 @@ const BookModal = (props) => {
       }
   };
 
-  console.log(props.book);
-  console.log(props.book.amazonUrl);
-
   return createPortal(
     <React.Fragment>
       <BackdropOverlay />
@@ -64,6 +62,14 @@ const BookModal = (props) => {
               </div>
           </div>
         </div>
+        <div className={styles.reviews}>
+            <h2>Reviews</h2>
+            {!reviews && <p>There are no reviews available for this book.</p>}
+            {reviews && reviews.map((review) => (
+                <ReviewItem key={Math.random()} review={review}/>
+            ))}
+        </div>
+        
 
         <button onClick={props.onCloseModal}>Close</button>
       </div>

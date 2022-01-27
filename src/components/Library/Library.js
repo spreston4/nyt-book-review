@@ -55,8 +55,6 @@ const Library = (props) => {
   // Ensure correct quanity of books is displayed.
   const numResults = props.filterQuantity || libraryArray.length;
 
-  console.log(libraryArray);
-
   return (
     <div className={styles.library}>
       {isLoading && <img src={loadingImage} />}

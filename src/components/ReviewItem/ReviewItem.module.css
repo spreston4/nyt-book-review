@@ -1,0 +1,26 @@
+.review {
+    padding: 1rem;
+    margin: .75rem 0;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(51, 94, 47, 0.25);
+  }
+  
+.review p {
+    margin-bottom: .25rem;
+}
+  
+  .review a {
+    font-size: small;
+    color: black;
+  }
+  
+  .review a:hover,
+  .review a:active {
+    color: #485549;
+  }
+
+  .byline {
+    font-size: small;
+    color: black;
+  }
+  

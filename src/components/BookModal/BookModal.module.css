@@ -11,6 +11,10 @@
   border-radius: 3px;
   box-shadow: 0 2px 8px rgba(51, 94, 47, 0.25);
   animation: slide-down 400ms ease-out forwards;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
 }
 
 .backdrop {
@@ -70,6 +74,10 @@
   height: 16.8rem;
   border-radius: 3px;
   box-shadow: 0 2px 8px rgba(51, 94, 47, 0.25);
+}
+
+.reviews {
+    margin: 1rem 0;
 }
 
 @keyframes slide-down {
