@@ -1,11 +1,21 @@
-import styles from"./ReviewItem.module.css";
+import styles from "./ReviewItem.module.css";
 
 const ReviewItem = (props) => {
+  // Convert uppercase reveiew author to title case 
+  const convertCase = (str) => {
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
+      .join(" ");
+  };
+
   return (
     <div className={styles.review}>
       <p>{props.review.summary}</p>
       <p className={styles.byline}>
-        Review by {props.review.byline}. Published on {props.review.publication_dt}.
+        Review by {convertCase(props.review.byline)}. Published on{" "}
+        {props.review.publication_dt}.
       </p>
       <a href={props.review.url}>FULL REVIEW</a>
     </div>

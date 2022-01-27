@@ -43,6 +43,11 @@ const BookModal = (props) => {
       }
   };
 
+  // Convert uppercase title to title case for use in paragraph body
+  const convertCase = (str) => {
+      return str.toLowerCase().split(' ').map((word) => word.charAt(0).toUpperCase() + word.substring(1)).join(' ');
+  };
+
   return createPortal(
     <React.Fragment>
       <BackdropOverlay />
@@ -57,7 +62,7 @@ const BookModal = (props) => {
               <p className={styles.byline}>Written by {props.book.author}. Published by {props.book.publisher}.</p>
               <div>
                   <h3>Best seller for {props.book.weeksOnList} weeks!</h3>
-                  <p>{props.book.title} is currently ranked number {props.book.rank} on the New York Times Best Sellers list in its category.</p>
+                  <p>{convertCase(props.book.title)} is currently ranked number {props.book.rank} on the New York Times Best Sellers list in its category.</p>
                   <a href={props.book.amazonUrl}target='_blank'>Find it on Amazon</a>
               </div>
           </div>
