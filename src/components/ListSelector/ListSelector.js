@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Select from "react-select";
 import styles from "./ListSelector.module.css";
 import Button from "../ui/Button/Button";
 import loadingImage from "../../assets/images/Spinner-1s-45px.gif";
@@ -10,13 +9,6 @@ const ListSelector = (props) => {
   const [selectedList, setSelectedList] = useState({ name: "", encoded: "" });
   const [selectionError, setSelectionError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
-  // const quantityOptions = [
-  //   { value: 5, label: "5" },
-  //   { value: 10, label: "10" },
-  //   { value: 15, label: "15" },
-  //   { value: "", label: "All" },
-  // ];
 
   // Fetch list names from NYT api on application load
   useEffect(() => {
@@ -115,29 +107,21 @@ const ListSelector = (props) => {
             <label htmlFor="quantity-selector">
               <h3>Select quantity!</h3>
             </label>
-            {/* <Select
-              onChange={quantityChangeHandler}
-              value={quantityOptions.value}
-              options={quantityOptions}
-              defaultValue={quantityOptions[1]}
-            /> */}
             <select
               onChange={quantityChangeHandler}
               list="quantity"
               name="quantity-selector"
               id="quantity-selector"
+              defaultValue={10}
             >
               <option value={5}>5</option>
-              <option value={10} selected>
-                10
-              </option>
+              <option value={10}>10</option>
               <option value={15}>15</option>
               <option value="">All</option>
             </select>
           </React.Fragment>
         )}
         {isLoading && <img src={loadingImage} />}
-        {/* <button type="submit">Submit</button> */}
         <Button type="submit" alt={true}>
           Submit
         </Button>
