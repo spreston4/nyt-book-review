@@ -17,6 +17,10 @@
   align-items: flex-start;
 }
 
+.modal p {
+  color: black;
+}
+
 .modal button {
   width: 10.5rem;
   padding: 0.25rem;
@@ -62,7 +66,6 @@
 
 .details p {
   margin-top: 0.25rem;
-  color: black;
 }
 
 .details h3 {

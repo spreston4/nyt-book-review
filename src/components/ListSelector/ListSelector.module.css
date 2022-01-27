@@ -30,20 +30,7 @@
 }
 
 .selector button {
-  background-color: #ffffff;
-  color: black;
-  border: none;
-  border-radius: 3px;
-  padding: 0.25rem 0.75rem;
-  margin: 0.5rem 0;
   width: 15rem;
-}
-
-.selector button:hover,
-.selector button:active {
-  cursor: pointer;
-  transform: scale(1.1);
-  transition: linear 75ms;
 }
 
 .selector h3 {

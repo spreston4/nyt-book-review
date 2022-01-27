@@ -1,0 +1,21 @@
+.button {
+  padding: 0.25rem;
+  margin: .5rem 0;
+  color: #ffffff;
+  background-color: #485549;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(51, 94, 47, 0.25);
+}
+
+.alt {
+  color: black !important;
+  background-color: #ffffff !important;
+}
+
+.button:hover,
+.button:active {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: linear 75ms;
+}

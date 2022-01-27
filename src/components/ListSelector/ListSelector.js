@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import styles from "./ListSelector.module.css";
+import Button from "../ui/Button/Button";
 import loadingImage from "../../assets/images/Spinner-1s-45px.gif";
 
 const ListSelector = (props) => {
@@ -136,7 +137,8 @@ const ListSelector = (props) => {
           </React.Fragment>
         )}
         {isLoading && <img src={loadingImage} />}
-        <button type="submit">Submit</button>
+        {/* <button type="submit">Submit</button> */}
+        <Button type='submit' alt={true}>Submit</Button>
         {selectionError && (
           <p className={styles.error}>Select a valid Book List.</p>
         )}
