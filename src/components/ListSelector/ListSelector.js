@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./ListSelector.module.css";
 import Button from "../ui/Button/Button";
 import loadingImage from "../../assets/images/Spinner-1s-45px.gif";
 
 const ListSelector = (props) => {
   const [listNames, setListNames] = useState([]);
-  const [quantity, setQuantity] = useState();
   const [selectedList, setSelectedList] = useState({ name: "", encoded: "" });
   const [selectionError, setSelectionError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const quantity = useRef();
 
   // Fetch list names from NYT api on application load
   useEffect(() => {
@@ -56,10 +56,10 @@ const ListSelector = (props) => {
     }
 
     props.onUpdateList({ selectedList });
-    props.onUpdateQuantity(quantity);
+    props.onUpdateQuantity(quantity.current.value);
   };
 
-  // Sets state whenever new option is selected from the dropdown.
+  // Sets state whenever new list option is selected from the dropdown.
   const listChangeHandler = (event) => {
     // Reset error state if it exists.
     setSelectionError(false);
@@ -71,10 +71,6 @@ const ListSelector = (props) => {
           "data-list-encoded"
         ),
     });
-  };
-
-  const quantityChangeHandler = (event) => {
-    setQuantity(event.target.value);
   };
 
   return (
@@ -108,7 +104,7 @@ const ListSelector = (props) => {
               <h3>Select quantity!</h3>
             </label>
             <select
-              onChange={quantityChangeHandler}
+              ref={quantity}
               list="quantity"
               name="quantity-selector"
               id="quantity-selector"
