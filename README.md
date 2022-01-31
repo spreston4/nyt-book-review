@@ -4,7 +4,7 @@
 
 ## Description
 
-NYT Book Reviews is a front end application for exploring, and reading reviews for, books on the New York Times Best Sellers list. When the application loads, the user is presented with interactive cards for the top 10 best sellers from the 'Paperback Trade Fiction' category. The user can explore these books, or select another category to explore. The user can also choose to display more, or less, results.
+NYT Book Reviews is a responsive, mobile-friendly, front end application for exploring, and reading reviews for, books on the New York Times Best Sellers list. When the application loads, the user is presented with interactive cards for the top 10 best sellers from the 'Paperback Trade Fiction' category. The user can explore these books, or select another category to explore. The user can also choose to display more, or less, results.
 
 
 - [Deployed NYT Book Reviews Application](https://spreston4.github.io/nyt-book-review/)
@@ -65,9 +65,17 @@ Built in Visual Studio with:
 
 - [Deployed NYT Book Reviews Application](https://spreston4.github.io/nyt-book-review/)
 
+### Desktop Version
+
 ![Home](./public/assets/images/home.PNG)
 
 ![Modal](./public/assets/images/modal.PNG)
+
+### Mobile Version
+
+![Mobile - Home](./public/assets/images/mobile1.jpg)
+
+![Mobile - Modal](./public/assets/images/mobile2.jpg)
 
 ## Contact Me
 
