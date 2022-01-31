@@ -37,8 +37,44 @@
   font-weight: 100;
 }
 
+.selections {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.item {
+  margin: 0;
+}
+
 .error {
   margin-top: 0.5rem;
   font-size: small;
   font-style: italic;
+}
+
+@media screen and (max-width: 850px) {
+  .selector {
+    width: 90%;
+    margin: 1rem;
+    text-align: center;
+  }
+
+  .selector select {
+    width: 10rem;
+  }
+
+  .selections {
+    flex-direction: row;
+    margin-bottom: 0.5rem;
+  }
+
+  .item {
+    margin: 0 1rem;
+  }
+
+  .error {
+    text-align: center;
+  }
 }

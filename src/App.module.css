@@ -9,3 +9,11 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
+
+@media screen and (max-width: 850px) {
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

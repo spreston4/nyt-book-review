@@ -79,52 +79,59 @@ const ListSelector = (props) => {
       <form onSubmit={submitFormHandler} className={styles.selector}>
         {!isLoading && (
           <React.Fragment>
-            <label htmlFor="list-selector">
-              <h3>Checkout a new Book List!</h3>
-            </label>
-            <select
-              onChange={listChangeHandler}
-              list="lists"
-              name="list-selector"
-              id="list-selector"
-            >
-              <option value="blank">Select a NYT Book List</option>
-              {listNames.map((list) => (
-                <option
-                  key={list.id}
-                  value={list.name}
-                  data-list-encoded={list.encoded}
+            <div className={styles.selections}>
+              <div className={styles.item}>
+                <label htmlFor="list-selector">
+                  <h3>Checkout a new Book List!</h3>
+                </label>
+                <select
+                  onChange={listChangeHandler}
+                  list="lists"
+                  name="list-selector"
+                  id="list-selector"
                 >
-                  {list.name}
-                </option>
-              ))}
-            </select>
-            <br />
-
-            <label htmlFor="quantity-selector">
-              <h3>Select quantity!</h3>
-            </label>
-            <select
-              ref={quantity}
-              list="quantity"
-              name="quantity-selector"
-              id="quantity-selector"
-              defaultValue={10}
-            >
-              <option value={5}>5</option>
-              <option value={10}>10</option>
-              <option value={15}>15</option>
-              <option value="">All</option>
-            </select>
-            <Button type="submit" alt={true}>
-              Submit
-            </Button>
+                  <option value="blank">Select a NYT Book List</option>
+                  {listNames.map((list) => (
+                    <option
+                      key={list.id}
+                      value={list.name}
+                      data-list-encoded={list.encoded}
+                    >
+                      {list.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <br />
+              <div className={styles.item}>
+                <label htmlFor="quantity-selector">
+                  <h3>Select quantity!</h3>
+                </label>
+                <select
+                  ref={quantity}
+                  list="quantity"
+                  name="quantity-selector"
+                  id="quantity-selector"
+                  defaultValue={10}
+                >
+                  <option value={5}>5</option>
+                  <option value={10}>10</option>
+                  <option value={15}>15</option>
+                  <option value="">All</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <Button type="submit" alt={true}>
+                Submit
+              </Button>
+              {selectionError && (
+                <p className={styles.error}>Select a valid Book List.</p>
+              )}
+            </div>
           </React.Fragment>
         )}
         {isLoading && <img src={loadingImage} />}
-        {selectionError && (
-          <p className={styles.error}>Select a valid Book List.</p>
-        )}
       </form>
     </React.Fragment>
   );
