@@ -10,7 +10,7 @@
   align-items: flex-start;
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 1007px) {
   .container {
     flex-direction: column;
     justify-content: center;

@@ -53,9 +53,16 @@
   }
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 1007px) {
   .header {
     flex-direction: column;
     padding-top: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .header h1,
+  .subtitle {
+    font-size: 1.75rem;
   }
 }
