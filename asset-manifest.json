@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/nyt-book-review/static/css/main.9d992137.css",
+    "main.css": "/nyt-book-review/static/css/main.fdaefb02.css",
     "main.js": "/nyt-book-review/static/js/main.49f9c848.js",
     "static/media/Spinner-1s-200px.gif": "/nyt-book-review/static/media/Spinner-1s-200px.b6bbe9f32ef4a0822077.gif",
     "static/media/Spinner-1s-45px.gif": "/nyt-book-review/static/media/Spinner-1s-45px.2d46e4ce268d6c271c7a.gif",
     "index.html": "/nyt-book-review/index.html",
-    "main.9d992137.css.map": "/nyt-book-review/static/css/main.9d992137.css.map",
+    "main.fdaefb02.css.map": "/nyt-book-review/static/css/main.fdaefb02.css.map",
     "main.49f9c848.js.map": "/nyt-book-review/static/js/main.49f9c848.js.map"
   },
   "entrypoints": [
-    "static/css/main.9d992137.css",
+    "static/css/main.fdaefb02.css",
     "static/js/main.49f9c848.js"
   ]
 }
