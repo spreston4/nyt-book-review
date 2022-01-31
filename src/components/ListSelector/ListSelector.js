@@ -105,7 +105,7 @@ const ListSelector = (props) => {
               <br />
               <div className={styles.item}>
                 <label htmlFor="quantity-selector">
-                  <h3>Select quantity!</h3>
+                  <h3>Select a new quantity!</h3>
                 </label>
                 <select
                   ref={quantity}

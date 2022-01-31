@@ -15,6 +15,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
+  overflow-y: auto;
 }
 
 .modal p {
@@ -103,9 +104,29 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1007px) {
   .modal {
     width: 40rem;
     left: calc(50% - 20rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .modal {
+    display: inline;
+    width: 90%;
+    top: 2vh;
+    left: 5%;
+    max-height: 95%;
+    overflow-y: auto;
+  }
+
+  .content {
+    display: inline;
+  }
+
+  .details {
+    margin-left: 0;
+    margin-top: 1rem;
   }
 }
